@@ -2,18 +2,38 @@ module.exports = {
   env: {
     node: true,
   },
-  parser: "@typescript-eslint/parser",
+  parser: '@typescript-eslint/parser',
+  ignorePatterns: ['**/node_modules/**', '**/dist/**'],
   extends: [
-    "eslint:recommended",
-    "plugin:@typescript-eslint/recommended",
-    "prettier",
+    'eslint:recommended',
+    'plugin:@typescript-eslint/recommended',
+    'plugin:prettier/recommended',
   ],
-  plugins: ["@typescript-eslint"],
+  plugins: ['@typescript-eslint', 'prettier'],
   parserOptions: {
-    sourceType: "module",
+    sourceType: 'module',
     ecmaVersion: 2020,
   },
   rules: {
-    "@typescript-eslint/no-non-null-assertion": "off",
+    '@typescript-eslint/no-non-null-assertion': 'off',
+    'prettier/prettier': [
+      'error',
+      {
+        endOfLine: 'auto',
+        singleQuote: true,
+        trailingComma: 'all',
+      },
+    ],
+  },
+  setting: {
+    'import/resolver': {
+      typescript: {
+        project: './tsconfig.json',
+        alwaysTryTypes: true,
+      },
+    },
+    react: {
+      version: 'detect',
+    },
   },
 };
